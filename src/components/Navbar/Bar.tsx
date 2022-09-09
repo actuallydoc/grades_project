@@ -3,7 +3,10 @@ import { trpc } from "../../utils/trpc"
 import BarItem from "./BarItem";
 
 const Bar = () => {
-
+    //!TODO Make the navbar sticky have a fixed position
+    //!TODO Make the navbar responsive
+    //!TODO Make the navbar different if the user is logged in(Logout button , Profile picture , Dashboard button)
+    //!TODO Make the navbar different if the user is logged out (default look)
     useEffect(() => {
 
     }, [])

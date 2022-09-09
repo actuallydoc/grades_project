@@ -4,7 +4,8 @@ import FormItem from "./FormItem";
 import {Divider, Tooltip, Typography} from "@mui/material";
 import JoinButton from "./JoinButton";
 import Image from "next/image";
-
+import PasswordIcon from '@mui/icons-material/Password';
+import EmailIcon from '@mui/icons-material/Email';
 const Login = () => {
 
     const [form, setForm] = useState({
@@ -32,10 +33,14 @@ const Login = () => {
                     </div>
                     <Divider variant="middle" />
                     <div>
-                        <FormItem type={"email"} id={"email"} content={"Email"} name={"email"} callback={handleChange}/>
+                        <FormItem type={"email"} id={"email"} content={"Email"} name={"email"} callback={handleChange}>
+                            <EmailIcon/>
+                        </FormItem>
                     </div>
                     <div>
-                    <FormItem  name={"password"} id={"password"} type={"password"} content={"Password"} callback={handleChange}/>
+                        <FormItem  name={"password"} id={"password"} type={"password"} content={"Password"} callback={handleChange}>
+                            <PasswordIcon/>
+                        </FormItem>
                     </div>
                     <div className={"pt-2 pb-2"}>
                         <Tooltip title="Add" arrow>

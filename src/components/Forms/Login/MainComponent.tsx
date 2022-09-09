@@ -6,9 +6,7 @@ import Bar from "../../Navbar/Bar";
 const MainComponent = () => {
     return (
         <div>
-            <Head>
-                <Bar/>
-            </Head>
+
             <div className={"flex flex-col h-screen justify-center items-center"}>
                 <div className={""}>
                     <Login />

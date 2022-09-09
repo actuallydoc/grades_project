@@ -11,6 +11,7 @@ export interface FormItemProps {
     type: "text" | "password" | "email";
     content: string;
     callback: any;
+    children: any;
 
 }
 
