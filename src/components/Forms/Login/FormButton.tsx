@@ -9,5 +9,4 @@ const FormButton = ({text, callback, type} : LoginButtonProps) => {
         </div>
     );
 };
-
 export default FormButton;

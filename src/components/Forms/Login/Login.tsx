@@ -3,6 +3,7 @@ import FormButton from "./FormButton";
 import FormItem from "./FormItem";
 import {Divider, Tooltip, Typography} from "@mui/material";
 import JoinButton from "./JoinButton";
+import Image from "next/image";
 
 const Login = () => {
 
@@ -16,14 +17,14 @@ const Login = () => {
         console.log("You clicked the button for login");
     }
     const handleChange = (e: any) => {
-        setForm({...form, [e.target.name]: e.target.value})
-
+        setForm({...form, [e.target.id]: e.target.value})
         console.log(form);
-
     }
-
     return (
-        <div className={"flex shadow-2xl"}>
+        <div className={"flex shadow-2xl  rounded-lg"}>
+            <div>
+                <Image src={"https://i.pinimg.com/originals/60/fc/d5/60fcd598765e09e2c428cdba27898c60.jpg"} width={1000} height={500} />
+            </div>
             <div className={"flex-col pt-4 font-normal box w-[500px] h-[auto] justify-center  text-center rounded-lg  drop-shadow-2xl"}>
                 <div className={"justify-center"}>
                     <div className={""}>
@@ -41,7 +42,7 @@ const Login = () => {
                             <FormButton text={"Login"} callback={handleClick} type={'button'}/>
                         </Tooltip>
                     </div>
-                    <div className={"p-1 text-slate-600"}>
+                    <div className={"p-1 pb-10 text-slate-600"}>
                         <Tooltip title="Click on join button to register a free account" arrow>
                             <Typography variant={"body1"}>Don't have an account?</Typography>
                         </Tooltip>

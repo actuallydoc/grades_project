@@ -6,7 +6,7 @@ const FormItem = ({ type, name , id, content, callback }: FormItemProps) => {
         <div className={"flex"}>
             <div className={"rounded-lg text-center"}>
                <div className={"pt-3 p-3"}>
-                   <TextField onChange={callback} type={type} id={id} label={content} variant="outlined" required/>
+                   <TextField onChange={callback} name={name} type={type} id={id} label={content} variant="outlined" required/>
                </div>
 
             </div>

@@ -13,3 +13,9 @@ export interface FormItemProps {
     callback: any;
 
 }
+
+
+export interface BarItemProps {
+    name: string;
+    link: string;
+}
