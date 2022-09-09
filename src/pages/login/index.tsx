@@ -12,14 +12,16 @@ const Index = () => {
     }, []);
 
     return (
-        <div>
+        <div className={"relative"}>
+            <div>
             <div className={""}>
-                    <Head>
+                <Head>
                         <Bar/>
-                    </Head>
+                </Head>
               <div>
                     <MainComponent/>
                 </div>
+            </div>
             </div>
         </div>
     );

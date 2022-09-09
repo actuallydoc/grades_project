@@ -13,7 +13,7 @@ const Bar = () => {
 
     return (
         <div>
-            <div className={"bg-black text-slate-200"}>
+            <div className={"fixed top-0 left-0 right-0 bg-black text-slate-200 "}>
                 <div className={"flex justify-between"}>
                     <div className={"flex"}>
                         <div className={"p-2"}>
