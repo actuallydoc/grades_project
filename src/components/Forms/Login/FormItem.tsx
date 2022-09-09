@@ -1,11 +1,14 @@
 import React from 'react';
 import {FormItemProps} from '../../../../types'
-const FormItem = ({ type, name , id, content }: FormItemProps) => {
+import {TextField} from "@mui/material";
+const FormItem = ({ type, name , id, content, callback }: FormItemProps) => {
     return (
         <div className={"flex"}>
-            <div className={"rounded-lg border w-[250px] h-[70px]"}>
-                <p className={"pb-0.5 rounded-lg border w-[100px]"}>{content}</p>
-                <input type={type}name={name} id={id}/>
+            <div className={"rounded-lg text-center"}>
+               <div className={"pt-3 p-3"}>
+                   <TextField onChange={callback} type={type} id={id} label={content} variant="outlined" required/>
+               </div>
+
             </div>
         </div>
     );
