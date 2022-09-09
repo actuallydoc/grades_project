@@ -10,8 +10,8 @@ const Login = () => {
 
     return (
         <div className={"flex"}>
-            <div className={"flex-col pt-2 font-normal bg-slate-300 box w-[250px]  justify-center  text-center rounded-lg border-2  drop-shadow-lg "}>
-                <div className={"text-center m-auto text-center"}>
+            <div className={"flex-col pt-2 font-normal bg-sky-500/20 box w-[250px]  justify-center  text-center rounded-lg border-2  drop-shadow-lg "}>
+                <div className={"justify-center"}>
                     <div className={"pb-2 font-bold border-2 w-[100px] h-[30px] rounded-lg drop-shadow-lg"}>
                         <p>Login Form</p>
                     </div>

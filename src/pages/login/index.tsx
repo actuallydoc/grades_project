@@ -8,12 +8,10 @@ const Index = () => {
     return (
         <div>
             <div>
-                <div className={"bg-gradient-to-r from-gray-300 via-sky-200 to-gray-500 flex flex-col h-screen justify-center items-center"}>
+                <div className={"bg-gradient-to-r from-sky-200 via-sky-300 to-sky-500 flex flex-col h-screen justify-center items-center"}>
                     <Login />
                 </div>
-
             </div>
-
         </div>
     );
 };
