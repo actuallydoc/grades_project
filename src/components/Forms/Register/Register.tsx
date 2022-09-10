@@ -79,17 +79,6 @@ const Register = () => {
                 </div>
             </div>
             <div>
-                <div className={"absolute"}>
-                    <ToastContainer
-                        position="bottom-center"
-                        autoClose={3000}
-                        hideProgressBar={true}
-                        newestOnTop={true}
-                        closeOnClick
-                        rtl={false}
-                        pauseOnFocusLoss
-                    />
-                </div>
             </div>
         </div>
     );
