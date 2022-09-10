@@ -17,10 +17,11 @@ const Register = () => {
         school: "",
         name: ""
     })
-    const user = trpc.useQuery(['api.register', form])
+    const register = trpc.useMutation(['api.register']);
     const handleClick = (e: any) => {
         e.preventDefault();
-        console.log(user)
+        // @ts-ignore
+        register.mutate(form);
         console.log("You clicked the button for login");
     }
     const handleChange = (e: any) => {

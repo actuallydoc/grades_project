@@ -3,18 +3,18 @@ import { z } from "zod";
 import {TRPCError} from "@trpc/server";
 // @ts-ignore
 import bcrypt from "bcryptjs";
-let salt = bcrypt.genSaltSync(10);
-export const userRouter = createRouter().query("login", {
+export const userRouter = createRouter().mutation("login", {
     input: z.object({
         email: z.string(),
         password: z.string(),
     }),
+
     async resolve({ ctx , input}) {
         // @ts-ignore
-        const user = await ctx.prisma.user.findUnique({
+
+        const user = await ctx.prisma.user.findUniqueOrThrow({
             where: {
                 email: input.email,
-
             }
         })
         if (!user) {
@@ -23,17 +23,21 @@ export const userRouter = createRouter().query("login", {
                 message: 'User not found'
             })
         }
-        if (user.password !== input.password) {
+
+        const isMatch = await bcrypt.compare(input.password, user.password);
+        if (!isMatch) {
             throw new TRPCError({
                 code: 'UNAUTHORIZED',
-                message: 'Incorrect password'
+                message: 'Incorrect Credentials'
             })
         }
         return {
-            user: user
+            user: user,
+            message: "Login Successful"
         };
+
     }
-}).query("register", {
+}).mutation("register", {
     input: z.object({
         email: z.string(),
         password: z.string(),
@@ -45,8 +49,6 @@ export const userRouter = createRouter().query("login", {
         let exists;
         //encrypt the password
 
-        hashedPassword =  bcrypt.hashSync(input.password, salt);
-        console.log(hashedPassword);
         try {
             exists = await ctx.prisma.user.findUnique({
                 where: {
@@ -59,33 +61,30 @@ export const userRouter = createRouter().query("login", {
                     message: 'Email already exists'
                 })
             }
-            let user = await ctx.prisma.user.create({
-                data: {
-                    email: input.email,
-                    password: input.password,
-                    school: input.school,
-                    name: input.name
-                }
-            })
+
         }catch (e) {
             console.log(e)
         }
         // @ts-ignore
         try {
-            const user = await ctx.prisma.user.create({
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(input.password, salt);
+            console.log(hashedPassword);
+
+            let user = await ctx.prisma.user.create({
                 data: {
                     email: input.email,
-                    password: input.password,
+                    password: hashedPassword,
                     school: input.school,
-                    name: input.name,
-
+                    name: input.name
                 }
             })
             return {
                 message: "User created",
                 user: user
             };
-        }catch {
+        }catch(e) {
+            console.log(e);
             throw new TRPCError({
                 code: 'CONFLICT',
                 message: 'User already exists'

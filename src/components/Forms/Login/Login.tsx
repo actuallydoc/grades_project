@@ -13,16 +13,15 @@ const Login = () => {
         email: "",
         password: ""
     })
-
+    // @ts-ignore
+    const login = trpc.useMutation(['api.login']);
     const handleClick = (e: any) => {
         e.preventDefault();
         console.log("You clicked the button for login");
-        trpc.useQuery(['api.login', form], {
-            onSuccess: (data) => {
-                console.log(data);
-            }
-        })
-    }
+        // @ts-ignore
+        login.mutate(form);
+        }
+
     const handleChange = (e: any) => {
         setForm({...form, [e.target.id]: e.target.value})
         console.log(form);
