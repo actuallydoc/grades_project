@@ -8,8 +8,8 @@ const LoginButton = () => {
     }
     return (
         <div className={"pb-2"} color={"success"}>
-            <div className={"text-slate-600"}>
-                <Button onClick={handleClick} type={"button"} variant={"contained"} endIcon={<LoginIcon />} >Login</Button>
+            <div>
+                <Button className={"bg-sky-400"} onClick={handleClick} type={"button"} variant={"contained"} endIcon={<LoginIcon />} >Login</Button>
             </div>
         </div>
     );

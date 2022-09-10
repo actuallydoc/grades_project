@@ -5,7 +5,10 @@ import LoginIcon from '@mui/icons-material/Login';
 const FormButton = ({text, callback, type} : LoginButtonProps) => {
     return (
         <div>
-                <Button onClick={callback} type={type} variant={"contained"} endIcon={<LoginIcon />} >{text}</Button>
+            <div>
+                <Button className={"bg-sky-400"} onClick={callback} type={type} variant={"contained"} endIcon={<LoginIcon />} >{text}</Button>
+            </div>
+
         </div>
     );
 };

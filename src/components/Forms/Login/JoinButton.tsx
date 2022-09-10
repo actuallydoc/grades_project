@@ -8,9 +8,9 @@ const JoinButton = () => {
 
     }
     return (
-        <div className={"pb-2"} color={"success"}>
+        <div className={"pb-2"}>
             <div className={"text-slate-600"}>
-                <Button onClick={handleClick} type={"button"} variant={"contained"} endIcon={<HowToRegIcon />} >Join</Button>
+                <Button className={"bg-sky-400"} onClick={handleClick} type={"button"} variant={"contained"} endIcon={<HowToRegIcon />} >Join</Button>
             </div>
         </div>
     );
