@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button} from "@mui/material";
+import {Button, Tooltip} from "@mui/material";
 import LoginIcon from '@mui/icons-material/Login';
 const LoginButton = () => {
     const handleClick = () => {
@@ -9,8 +9,10 @@ const LoginButton = () => {
     return (
         <div className={"pb-2"} color={"success"}>
             <div>
+                <Tooltip title="Submit" arrow>
                 <Button className={"bg-sky-400"} onClick={handleClick} type={"button"} variant={"contained"} endIcon={<LoginIcon />} >Login</Button>
-            </div>
+                </Tooltip>
+                </div>
         </div>
     );
 };

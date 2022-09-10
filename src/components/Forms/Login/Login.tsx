@@ -7,6 +7,10 @@ import Image from "next/image";
 import PasswordIcon from '@mui/icons-material/Password';
 import EmailIcon from '@mui/icons-material/Email';
 import {trpc} from "../../../utils/trpc";
+import {toast, ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import LoadingButton from "../Login/LoadingButton";
+
 const Login = () => {
 
     const [form, setForm] = useState({
@@ -17,11 +21,15 @@ const Login = () => {
     const login = trpc.useMutation(['api.login']);
     const handleClick = (e: any) => {
         e.preventDefault();
-        console.log("You clicked the button for login");
-        // @ts-ignore
-        login.mutate(form);
+        if (form.email === "" || form.password === "") {
+            toast.error("Please fill in all fields");
+        }else {
+            // @ts-ignore
+            login.mutate(form);
         }
 
+
+    }
     const handleChange = (e: any) => {
         setForm({...form, [e.target.id]: e.target.value})
         console.log(form);
@@ -48,9 +56,9 @@ const Login = () => {
                         </FormItem>
                     </div>
                     <div className={"pt-2 pb-2"}>
-                        <Tooltip title="Add" arrow>
-                            <FormButton text={"Login"} callback={handleClick} type={'button'}/>
-                        </Tooltip>
+
+                        {login.isLoading ? <div><LoadingButton text={"Loading.."} type={'button'}/></div>: <FormButton text={"Login"} callback={handleClick} type={'button'}/>}
+                        {login.isError && toast.error("Invalid credentials")}
                     </div>
                     <div className={"p-1 pb-10 text-slate-600"}>
                         <Tooltip title="Click on join button to register a free account" arrow>
@@ -60,10 +68,18 @@ const Login = () => {
                     <div>
                         <JoinButton />
                     </div>
+                    <div className={"absolute"}>
+                        <ToastContainer
+                            position="bottom-center"
+                            autoClose={3000}
+                            hideProgressBar={true}
+                            newestOnTop={true}
+                            closeOnClick
+                            rtl={false}
+                            pauseOnFocusLoss
+                        />
+                    </div>
                 </div>
-            </div>
-            <div>
-
             </div>
         </div>
     );

@@ -9,6 +9,8 @@ import EmailIcon from '@mui/icons-material/Email';
 import {trpc} from "../../../utils/trpc";
 import BadgeIcon from '@mui/icons-material/Badge';
 import SchoolIcon from '@mui/icons-material/School';
+import {toast, ToastContainer} from "react-toastify";
+import LoadingButton from "./LoadingButton";
 const Register = () => {
 
     const [form, setForm] = useState({
@@ -22,7 +24,12 @@ const Register = () => {
         e.preventDefault();
         // @ts-ignore
         register.mutate(form);
-        console.log("You clicked the button for login");
+        if (form.email === "" || form.password === "" || form.school === "" || form.name === "") {
+            toast.error("Please fill in all fields");
+        }else {
+            // @ts-ignore
+            register.mutate(form);
+        }
     }
     const handleChange = (e: any) => {
         setForm({...form, [e.target.id]: e.target.value})
@@ -60,14 +67,11 @@ const Register = () => {
                         </FormItem>
                     </div>
                     <div className={"pt-2 pb-2"}>
-                        <Tooltip title="Add" arrow>
-                            <FormButton text={"Register"} callback={handleClick} type={'button'}/>
-                        </Tooltip>
+                            {register.isLoading ? <div><LoadingButton text={"Loading..."} type={'button'}/></div>: <FormButton text={"Register"} callback={handleClick} type={'button'}/> }
+                            {register.isSuccess && toast.success("Successfully Registered")}
                     </div>
                     <div className={"p-1 pb-10 text-slate-600"}>
-                        <Tooltip title="Click the login button below!" arrow>
                             <Typography variant={"body1"}>Don't have an account?</Typography>
-                        </Tooltip>
                   </div>
                     <div>
                         <LoginButton />
@@ -75,7 +79,17 @@ const Register = () => {
                 </div>
             </div>
             <div>
-
+                <div className={"absolute"}>
+                    <ToastContainer
+                        position="bottom-center"
+                        autoClose={3000}
+                        hideProgressBar={true}
+                        newestOnTop={true}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                    />
+                </div>
             </div>
         </div>
     );

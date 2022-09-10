@@ -4,6 +4,11 @@ export interface LoginButtonProps {
     callback: any;
 }
 
+export interface LoadingButtonProps {
+    text: string;
+    type: "submit" | "reset" | "button";
+
+}
 
 export interface FormItemProps {
     name: string;
