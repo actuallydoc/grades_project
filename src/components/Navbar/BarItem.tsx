@@ -8,8 +8,6 @@ const BarItem = ({name , link}: BarItemProps) => {
     const router = useRouter();
     return (
         <div>
-
-
         <Link sx={{ color: 'white' }} href={link} underline="none">
             {name}
         </Link>

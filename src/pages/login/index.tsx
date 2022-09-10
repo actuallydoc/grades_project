@@ -6,11 +6,9 @@ import MainComponent from "../../components/Forms/Login/MainComponent";
 import Head from "next/head";
 import Bar from "../../components/Navbar/Bar";
 const Index = () => {
-
     useEffect(() => {
 
     }, []);
-
     return (
         <div className={"relative"}>
             <div>
@@ -26,5 +24,4 @@ const Index = () => {
         </div>
     );
 };
-
 export default Index;

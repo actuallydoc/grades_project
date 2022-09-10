@@ -2,26 +2,26 @@ import React, {useState} from 'react';
 import FormButton from "./FormButton";
 import FormItem from "./FormItem";
 import {Divider, Tooltip, Typography} from "@mui/material";
-import JoinButton from "./JoinButton";
+import LoginButton from "./LoginButton";
 import Image from "next/image";
 import PasswordIcon from '@mui/icons-material/Password';
 import EmailIcon from '@mui/icons-material/Email';
 import {trpc} from "../../../utils/trpc";
-const Login = () => {
+import BadgeIcon from '@mui/icons-material/Badge';
+import SchoolIcon from '@mui/icons-material/School';
+const Register = () => {
 
     const [form, setForm] = useState({
         email: "",
-        password: ""
+        password: "",
+        school: "",
+        name: ""
     })
-
+    const user = trpc.useQuery(['api.register', form])
     const handleClick = (e: any) => {
         e.preventDefault();
+        console.log(user)
         console.log("You clicked the button for login");
-        trpc.useQuery(['api.login', form], {
-            onSuccess: (data) => {
-                console.log(data);
-            }
-        })
     }
     const handleChange = (e: any) => {
         setForm({...form, [e.target.id]: e.target.value})
@@ -35,7 +35,7 @@ const Login = () => {
             <div className={"flex-col pt-4 font-normal box w-[500px] h-[auto] justify-center  text-center rounded-lg  drop-shadow-2xl"}>
                 <div className={"justify-center"}>
                     <div className={""}>
-                        <Typography variant={"h6"}>Please login</Typography>
+                        <Typography variant={"h6"}>Please Register</Typography>
                     </div>
                     <Divider variant="middle" />
                     <div>
@@ -48,18 +48,28 @@ const Login = () => {
                             <PasswordIcon/>
                         </FormItem>
                     </div>
+                    <div>
+                        <FormItem  name={"School"} id={"school"} type={"text"} content={"School"} callback={handleChange}>
+                            <SchoolIcon/>
+                        </FormItem>
+                    </div>
+                    <div>
+                        <FormItem  name={"name"} id={"name"} type={"text"} content={"Name"} callback={handleChange}>
+                            <BadgeIcon/>
+                        </FormItem>
+                    </div>
                     <div className={"pt-2 pb-2"}>
                         <Tooltip title="Add" arrow>
-                            <FormButton text={"Login"} callback={handleClick} type={'button'}/>
+                            <FormButton text={"Register"} callback={handleClick} type={'button'}/>
                         </Tooltip>
                     </div>
                     <div className={"p-1 pb-10 text-slate-600"}>
-                        <Tooltip title="Click on join button to register a free account" arrow>
+                        <Tooltip title="Click the login button below!" arrow>
                             <Typography variant={"body1"}>Don't have an account?</Typography>
                         </Tooltip>
                   </div>
                     <div>
-                        <JoinButton />
+                        <LoginButton />
                     </div>
                 </div>
             </div>
@@ -70,4 +80,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Register;
